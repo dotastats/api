@@ -1,0 +1,14 @@
+# see api/config/config.yaml for more option
+
+app:
+  host: 0.0.0.0
+  port: 5002
+  debug: true
+  whitelist:
+      - "http://localhost:5002"
+
+log:
+  prefix    : "api"
+  dir       : /home/justin/workspace/src/api/log
+  levelDebug: true
+
