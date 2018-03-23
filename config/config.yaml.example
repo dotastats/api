@@ -8,7 +8,7 @@ app:
       - "http://localhost:5002"
 
 log:
-  prefix    : "api"
-  dir       : /home/justin/workspace/src/api/log
+  prefix    : "dotaapi"
+  dir       : /home/justin/workspace/src/dotaapi/log
   levelDebug: true
 

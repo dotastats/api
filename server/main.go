@@ -1,12 +1,12 @@
 package main
 
 import (
-	"api/app/handler"
-	"api/cmd"
-	"api/config"
+	"dotaapi/app/handler"
+	"dotaapi/config"
+	"dotamaster/cmd"
+	"dotamaster/infra"
+	"dotamaster/utilities/ulog"
 	"fmt"
-	"master/infra"
-	"master/utilities/ulog"
 	"net/http"
 
 	"github.com/facebookgo/grace/gracehttp"

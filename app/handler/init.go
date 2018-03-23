@@ -1,10 +1,9 @@
 package handler
 
 import (
-	"api/app/entity"
-	"api/config"
-	"master/middleware"
-	"master/utilities/ulog"
+	"dotaapi/config"
+	"dotamaster/middleware"
+	"dotamaster/utilities/ulog"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,31 +18,17 @@ func InitEngine(conf *config.Config) *gin.Engine {
 	r.Use(gin.Recovery())
 	r.Use(middleware.CORSMiddleware(conf.App.Whitelist))
 	r.Use(gin.LoggerWithWriter(ulog.Logger().Request))
-	r.LoadHTMLGlob("public/*.html")
-	r.Static("static", "./public/static")
 
 	if conf.App.Debug {
 		r.Use(gin.Logger())
 	}
 
-	indexHandler := indexHandler{
-		Category: entity.NewCategory(),
-	}
-	groupIndex := r.Group("")
+	// Ping
+	pingHandler := pingHandler{}
+	groupPing := r.Group("/")
 	{
-		GET(groupIndex, "", indexHandler.Index)
+		GET(groupPing, "", pingHandler.Ping)
 	}
-	// Product
-	productHandler := productHandler{
-		productEntity: entity.NewProduct(),
-	}
-	groupProduct := r.Group("/products")
-	{
-		GET(groupProduct, "/:slug", productHandler.GetDetail)
-		GET(groupProduct, "", productHandler.GetList)
-		POST(groupProduct, "", productHandler.Create)
-	}
-
 	return r
 }
 

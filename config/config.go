@@ -1,7 +1,7 @@
 package config
 
 import (
-	"api/cmd"
+	"dotamaster/cmd"
 	"sync"
 )
 
@@ -42,9 +42,9 @@ type PostgreSQL struct {
 
 func init() {
 	// Init CLI commands
-	cmd.Root().Use = "bin/api --config <Config path>"
-	cmd.Root().Short = "api - Provide API for dotastats"
-	cmd.Root().Long = "api"
+	cmd.Root().Use = "bin/dotaapi --config <Config path>"
+	cmd.Root().Short = "dotaapi - Provide API for dotastats"
+	cmd.Root().Long = "dotaapi"
 
 	cmd.SetRunFunc(load)
 }
