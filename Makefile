@@ -1,4 +1,4 @@
-NAME         =api
+NAME         =dotaapi
 MAIN_PATH    =server/
 MAIN_FILE    =server/main.go
 GIT_TAG      =v$(shell date +"%Y-%m-%d-%H-%M")

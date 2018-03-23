@@ -11,9 +11,8 @@ var (
 )
 
 type Config struct {
-	App        App
-	PostgreSQL PostgreSQL
-	Log        Log
+	App App
+	Log Log
 }
 
 type App struct {
@@ -27,17 +26,6 @@ type Log struct {
 	Prefix     string
 	Dir        string
 	LevelDebug bool
-}
-
-type PostgreSQL struct {
-	Username     string
-	Password     string
-	Host         string
-	Port         int
-	Db           string
-	Debug        bool
-	MaxIdleConns int
-	MaxOpenConns int
 }
 
 func init() {
@@ -64,9 +52,4 @@ func Load() {
 func Get() Config {
 	load()
 	return conf
-}
-
-func GetPostgreSQL() PostgreSQL { return conf.GetPostgreSQL() }
-func (c Config) GetPostgreSQL() PostgreSQL {
-	return c.PostgreSQL
 }
