@@ -1,9 +1,10 @@
 package handler
 
 import (
+	"dotaapi/app/entity"
 	"dotaapi/config"
 	"dotamaster/middleware"
-	"dotamaster/utilities/ulog"
+	"dotamaster/utils/ulog"
 
 	"github.com/gin-gonic/gin"
 )
@@ -28,6 +29,29 @@ func InitEngine(conf *config.Config) *gin.Engine {
 	groupPing := r.Group("/")
 	{
 		GET(groupPing, "", pingHandler.Ping)
+	}
+
+	// Team
+	teamHandler := teamHandler{
+		teamEntity: entity.NewTeamEntity(),
+	}
+	groupTeam := r.Group("team/:slug")
+	{
+		GET(groupTeam, "", teamHandler.GetMatches)
+		GET(groupTeam, "/info", teamHandler.GetInfo)
+		GET(groupTeam, "/history", teamHandler.GetHistory)
+		GET(groupTeam, "/f10k", teamHandler.GetF10kMatches)
+		GET(groupTeam, "/fb", teamHandler.GetFBMatches)
+	}
+
+	// Newfeeds
+	matchHandler := matchHandler{
+		matchEntity: entity.NewMatchEntity(),
+	}
+	groupMatch := r.Group("/matches")
+	{
+		GET(groupMatch, "", matchHandler.GetList)
+		GET(groupMatch, "/:id", matchHandler.GetDetail)
 	}
 	return r
 }

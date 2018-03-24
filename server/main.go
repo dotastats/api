@@ -5,7 +5,7 @@ import (
 	"dotaapi/config"
 	"dotamaster/cmd"
 	"dotamaster/infra"
-	"dotamaster/utilities/ulog"
+	"dotamaster/utils/ulog"
 	"fmt"
 	"net/http"
 
